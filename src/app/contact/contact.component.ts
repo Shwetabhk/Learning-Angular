@@ -23,12 +23,26 @@ export class ContactComponent implements OnInit {
 
   createForm() {
     this.feedbackForm = this.fb.group({
-      firstname: '',
-      lastname: '',
-      telnum: 0,
-      email: '',
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      telnum: [null, Validators.required],
+      email: ['', Validators.required],
       agree: false,
       contacttype: 'None',
+      message: ['', Validators.required]
+    });
+  }
+
+  onSubmit() {
+    this.feedback = this.feedbackForm.value;
+    console.log(this.feedback);
+    this.feedbackForm.reset({
+      firstname: '',
+      lastname: '',
+      telnum: null,
+      email: '',
+      agree: false,
+      contact: 'None',
       message: ''
     });
   }
